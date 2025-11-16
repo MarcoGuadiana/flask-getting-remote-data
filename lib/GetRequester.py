@@ -1,5 +1,6 @@
 import requests
 import json
+import urllib
 
 class GetRequester:
 
@@ -7,7 +8,12 @@ class GetRequester:
         self.url = url
 
     def get_response_body(self):
-        pass
+         with urllib.request.urlopen(self.url) as response:
+            return response.read()  
 
     def load_json(self):
-        pass
+        data = self.get_response_body()     
+        return json.loads(data.decode())  
+
+    
+    
